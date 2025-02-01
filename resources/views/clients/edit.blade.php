@@ -51,7 +51,15 @@
                             </button>
                         </div>
                     </form>
-                </div>
+
+                    <a href="{{ route('home-loan.edit', $client->id) }}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                        Manage Home Loan
+                    </a>
+
+{{--                    <a href="{{ route('clients.home-loan.edit', $client->id) }}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">--}}
+{{--                        Manage Client Home Loan--}}
+{{--                    </a>--}}
+
             </div>
         </div>
     </div>
