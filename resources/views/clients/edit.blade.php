@@ -3,7 +3,22 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <h2 class="text-2xl font-semibold mb-4">{{ __("Edit Client") }}</h2>
+
+                    <div class="flex mb-4" style="justify-content: space-between">
+                        <div>
+                            <h2 class="text-2xl font-semibold">{{ __("Edit Client") }}</h2>
+                        </div>
+                        <div>
+                            <a href="{{ route('home-loan.edit', $client->id) }}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 mr-2">
+                                Manage Home Loan
+                            </a>
+
+                            <a href="{{ route('cash_loan.edit', $client->id) }}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                                Manage Cash Loan
+                            </a>
+                        </div>
+
+                    </div>
 
                     @if ($errors->any())
                         <div class="mb-4 p-4 bg-red-500 text-white rounded">
@@ -45,21 +60,13 @@
                             <input type="text" id="phone" name="phone" value="{{ old('phone', $client->phone) }}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600">
                         </div>
 
-                        <div class="flex items-center justify-end mt-4">
-                            <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-                                {{ __("Update Client") }}
-                            </button>
-                        </div>
+                            <div class="col-span-6 p-4">
+                                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                                    {{ __("Update Client") }}
+                                </button>
+                            </div>
                     </form>
-
-                    <a href="{{ route('home-loan.edit', $client->id) }}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-                        Manage Home Loan
-                    </a>
-
-                    <a href="{{ route('cash_loan.edit', $client->id) }}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-                        Manage Cash Loan
-                    </a>
-
+                </div>
             </div>
         </div>
     </div>
