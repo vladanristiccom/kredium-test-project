@@ -13,7 +13,9 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        return view('clients.index', [
+            'clients' => Client::paginate(10)
+        ]);
     }
 
     /**
@@ -21,7 +23,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view('clients.create');
     }
 
     /**
@@ -29,15 +31,12 @@ class ClientController extends Controller
      */
     public function store(StoreClientRequest $request)
     {
-        //
-    }
+        // Faster solution, but we can split up the request layer from Repo/Business layer logic
+        Client::create(
+            $request->validated()
+        );
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Client $client)
-    {
-        //
+        return redirect()->route('clients.index')->with('success', 'Client created successfully!');
     }
 
     /**
@@ -45,7 +44,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        return view('clients.edit',['client' => $client]);
     }
 
     /**
@@ -53,7 +52,10 @@ class ClientController extends Controller
      */
     public function update(UpdateClientRequest $request, Client $client)
     {
-        //
+        $client->update(
+            $request->validated()
+        );
+        return back()->with('success', 'Client updated successfully!');
     }
 
     /**
