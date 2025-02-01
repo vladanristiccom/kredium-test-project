@@ -37,7 +37,7 @@
                             <input type="number" step="0.01" id="down_payment_amount" name="down_payment_amount" value="{{ old('down_payment_amount', $homeLoan?->down_payment_amount) }}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600" required>
                         </div>
 
-                        <div class="flex items-center justify-end mt-4">
+                        <div class="flex items-center justify-start mt-4">
                             <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
                                 {{ __("Update Home Loan") }}
                             </button>
