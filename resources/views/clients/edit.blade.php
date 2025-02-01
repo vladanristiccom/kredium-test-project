@@ -56,9 +56,9 @@
                         Manage Home Loan
                     </a>
 
-{{--                    <a href="{{ route('clients.home-loan.edit', $client->id) }}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">--}}
-{{--                        Manage Client Home Loan--}}
-{{--                    </a>--}}
+                    <a href="{{ route('cash_loan.edit', $client->id) }}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                        Manage Cash Loan
+                    </a>
 
             </div>
         </div>

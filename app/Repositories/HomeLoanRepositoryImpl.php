@@ -2,25 +2,24 @@
 
 namespace App\Repositories;
 
+use App\DTOs\ALoanDTO;
 use App\DTOs\HomeLoanDTO;
 use App\Models\Client;
 use App\Models\HomeLoan;
-use App\Repositories\IHomeLoanRepository;
-use Illuminate\Support\Facades\Auth;
 
-class HomeLoanRepositoryImpl implements IHomeLoanRepository
+class HomeLoanRepositoryImpl implements ILoanRepo
 {
 
-    public function updateClientHomeLoan(Client $client, HomeLoanDTO $homeLoanDTO): HomeLoan
+    public function updateClientLoan(Client $client, HomeLoanDTO|ALoanDTO $loanDTO): HomeLoan
     {
         $homeLoan = $client->homeLoan()->updateOrCreate(
             [
-                'id' => $homeLoanDTO->getId()
+                'id' => $loanDTO->getId()
             ],
             [
-                HomeLoan::ADVISOR_ID => $homeLoanDTO->getAdvisorId(),
-                HomeLoan::DOWN_PAYMENT_AMOUNT => $homeLoanDTO->getDownPaymentAmount(),
-                HomeLoan::PROPERTY_VALUE => $homeLoanDTO->getPropertyValue()
+                HomeLoan::ADVISOR_ID => $loanDTO->getAdvisorId(),
+                HomeLoan::DOWN_PAYMENT_AMOUNT => $loanDTO->getDownPaymentAmount(),
+                HomeLoan::PROPERTY_VALUE => $loanDTO->getPropertyValue()
             ]
         );
 

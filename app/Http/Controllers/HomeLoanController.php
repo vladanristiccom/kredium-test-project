@@ -6,6 +6,7 @@ use App\DTOs\HomeLoanDTO;
 use App\Http\Requests\UpdateClientHomeLoanRequest;
 use App\Models\Client;
 use App\Repositories\IHomeLoanRepository;
+use App\Repositories\ILoanRepo;
 use Closure;
 use Illuminate\Container\Container;
 use Illuminate\Support\Facades\Auth;
@@ -13,11 +14,11 @@ use Illuminate\Support\Facades\Auth;
 class HomeLoanController extends Controller
 {
 
-    private IHomeLoanRepository $homeLoanRepository;
+    private ILoanRepo $loanRepo;
 
-    public function __construct(IHomeLoanRepository $homeLoanRepository)
+    public function __construct(ILoanRepo $loanRepo)
     {
-        $this->homeLoanRepository = $homeLoanRepository;
+        $this->loanRepo = $loanRepo;
     }
 
     /**
@@ -36,10 +37,9 @@ class HomeLoanController extends Controller
      */
     public function update(Client $client, UpdateClientHomeLoanRequest $updateClientHomeLoanRequest)
     {
-        // can be moved to repo layer
-        $this->homeLoanRepository->updateClientHomeLoan(
+        $this->loanRepo->updateClientLoan(
             client: $client,
-            homeLoanDTO: new HomeLoanDTO(
+            loanDTO: new HomeLoanDTO(
                 id: $updateClientHomeLoanRequest->input('home_loan_id'),
                 downPaymentAmount: $updateClientHomeLoanRequest->input('down_payment_amount'),
                 propertyValue: $updateClientHomeLoanRequest->input('property_value'),

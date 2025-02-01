@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CashLoanController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\HomeLoanController;
 use App\Http\Controllers\ProfileController;
@@ -20,6 +21,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('clients', ClientController::class);
     Route::get('home-loans/{client}/edit', [HomeLoanController::class, 'edit'])->name('home-loan.edit');
     Route::put('home-loans/{client}/update', [HomeLoanController::class, 'update'])->name('home-loan.update');
+
+    Route::get('cash-loans/{client}/edit', [CashLoanController::class, 'edit'])->name('cash_loan.edit');
+    Route::put('cash-loans/{client}/update', [CashLoanController::class, 'update'])->name('cash_loan.update');
 });
 
 Route::get('reports', [ClientController::class, 'index'])->name('report.index');

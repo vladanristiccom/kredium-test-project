@@ -36,4 +36,9 @@ class Client extends Model
         return $this->belongsTo(HomeLoan::class);
     }
 
+    public function cashLoan(): BelongsTo
+    {
+        return $this->belongsTo(CashLoan::class);
+    }
+
 }
