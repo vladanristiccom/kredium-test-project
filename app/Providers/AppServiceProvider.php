@@ -9,6 +9,8 @@ use App\Repositories\HomeLoanRepositoryImpl;
 use App\Repositories\ILoanRepo;
 use App\Repositories\IReportRepo;
 use App\Repositories\ReportRepoImpl;
+use App\Services\IReportService;
+use App\Services\ReportServiceImpl;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -28,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
                   ->give(CashLoanRepositoryImpl::class);
 
         $this->app->singleton(IReportRepo::class, ReportRepoImpl::class);
+        $this->app->singleton(IReportService::class, ReportServiceImpl::class);
     }
 
     /**

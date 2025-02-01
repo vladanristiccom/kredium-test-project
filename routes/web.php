@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::get('cash-loans/{client}/edit', [CashLoanController::class, 'edit'])->name('cash_loan.edit');
     Route::put('cash-loans/{client}/update', [CashLoanController::class, 'update'])->name('cash_loan.update');
     Route::get('reports', [ReportController::class, 'index'])->name('report.index');
+    Route::get('reports/export', [ReportController::class, 'export'])->name('report.export');
 
 });
 
