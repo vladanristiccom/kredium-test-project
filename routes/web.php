@@ -4,6 +4,7 @@ use App\Http\Controllers\CashLoanController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\HomeLoanController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,7 +25,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('cash-loans/{client}/edit', [CashLoanController::class, 'edit'])->name('cash_loan.edit');
     Route::put('cash-loans/{client}/update', [CashLoanController::class, 'update'])->name('cash_loan.update');
+    Route::get('reports', [ReportController::class, 'index'])->name('report.index');
+
 });
 
-Route::get('reports', [ClientController::class, 'index'])->name('report.index');
 require __DIR__.'/auth.php';

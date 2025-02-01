@@ -60,11 +60,11 @@
                             <input type="text" id="phone" name="phone" value="{{ old('phone', $client->phone) }}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600">
                         </div>
 
-                            <div class="col-span-6 p-4">
-                                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-                                    {{ __("Update Client") }}
-                                </button>
-                            </div>
+                        <div class="col-span-6 p-4">
+                            <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                                {{ __("Update Client") }}
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
