@@ -9,7 +9,6 @@ use App\Models\Client;
 
 class CashLoanRepositoryImpl implements ILoanRepo
 {
-
     public function updateClientLoan(Client $client, ALoanDTO|CashLoanDTO $loanDTO): CashLoan
     {
         $cashLoan = $client->cashLoan()->updateOrCreate(

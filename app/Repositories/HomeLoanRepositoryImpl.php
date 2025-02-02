@@ -9,7 +9,6 @@ use App\Models\HomeLoan;
 
 class HomeLoanRepositoryImpl implements ILoanRepo
 {
-
     public function updateClientLoan(Client $client, HomeLoanDTO|ALoanDTO $loanDTO): HomeLoan
     {
         $homeLoan = $client->homeLoan()->updateOrCreate(

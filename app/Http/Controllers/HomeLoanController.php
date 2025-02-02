@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\DTOs\HomeLoanDTO;
 use App\Http\Requests\UpdateClientHomeLoanRequest;
 use App\Models\Client;
-use App\Repositories\IHomeLoanRepository;
 use App\Repositories\ILoanRepo;
 use Closure;
 use Illuminate\Container\Container;
