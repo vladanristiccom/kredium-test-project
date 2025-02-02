@@ -14,7 +14,7 @@ class ReportRepoImpl implements IReportRepo
     public function getAdvisorReportData(User $user, ?Carbon $from = null, ?Carbon $to = null, ?bool $today = false): Collection
     {
         $query = CashLoan::where(CashLoan::ADVISOR_ID, $user->id);
-        $this->applyDateFilters($query, $from, $to, $today);
+        $this->applyDateFilters($query, $today, $from, $to);
         $cashLoans = $query->get()->map(function ($loan) {
             return [
                 'product_type' => 'Cash Loan',
@@ -24,7 +24,7 @@ class ReportRepoImpl implements IReportRepo
         });
 
         $query = HomeLoan::where(CashLoan::ADVISOR_ID, $user->id);
-        $this->applyDateFilters($query, $from, $to, $today);
+        $this->applyDateFilters($query, $today, $from, $to);
         $homeLoans = $query->get()->map(function ($loan) {
             return [
                 'product_type' => 'Home Loan',
@@ -34,16 +34,19 @@ class ReportRepoImpl implements IReportRepo
             ];
         });
 
+        // edge case handling when advisor doesn't have any cash loans yet
+        if($cashLoans->count() === 0) {
+            return $homeLoans->sortByDesc('created_at');
+        }
+
         return $cashLoans->merge($homeLoans)->sortByDesc('created_at');
     }
 
-    private function applyDateFilters($query, ?Carbon $from = null, ?Carbon $to = null, bool $today)
+    private function applyDateFilters($query, bool $today, ?Carbon $from = null, ?Carbon $to = null)
     {
-        if ($today) {
-            $query->whereDate('created_at', Carbon::today());
-        } else {
+        $today ?
+            $query->whereDate('created_at', Carbon::today()) :
             $query->whereBetween('created_at', [$from->startOfDay(), $to->endOfDay()]);
-        }
     }
 
 }
