@@ -3,7 +3,12 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <h2 class="text-2xl font-semibold mb-4">{{ __("Manage Client Home Loan") }}</h2>
+                    <div class="flex justify-between mb-4">
+                        <h2 class="text-2xl font-semibold">{{ __("Manage Client Home Loan") }}</h2>
+                        <a href="{{ route('clients.edit', $client->id) }}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                            {{ __("Back to client") }}
+                        </a>
+                    </div>
 
                     @if ($errors->any())
                         <div class="mb-4 p-4 bg-red-500 text-white rounded">
