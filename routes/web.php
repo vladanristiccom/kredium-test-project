@@ -12,14 +12,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('clients', ClientController::class);
     Route::middleware([CheckLoanOwnership::class])->group(function () {
         Route::get('home-loans/{client}/edit', [HomeLoanController::class, 'edit'])->name('home_loan.edit');
@@ -30,7 +28,6 @@ Route::middleware('auth')->group(function () {
     });
     Route::get('reports', [ReportController::class, 'index'])->name('report.index');
     Route::get('reports/export', [ReportController::class, 'export'])->name('report.export');
-
 });
 
 require __DIR__.'/auth.php';

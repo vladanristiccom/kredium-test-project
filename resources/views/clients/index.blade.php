@@ -27,6 +27,8 @@
                             <th class="px-4 py-2 text-left border-b">Last Name</th>
                             <th class="px-4 py-2 text-left border-b">Email</th>
                             <th class="px-4 py-2 text-left border-b">Phone</th>
+                            <th class="px-4 py-2 text-left border-b">Home Loan</th>
+                            <th class="px-4 py-2 text-left border-b">Cash Loan</th>
                             <th class="px-4 py-2 text-left border-b">Actions</th>
                         </tr>
                         </thead>
@@ -37,6 +39,18 @@
                                 <td class="px-4 py-2 border-b">{{ $client->last_name }}</td>
                                 <td class="px-4 py-2 border-b">{{ $client->email }}</td>
                                 <td class="px-4 py-2 border-b">{{ $client->phone }}</td>
+                                <td class="px-4 py-2 border-b">
+                                    <span class="px-2 py-1 rounded-full text-xs font-semibold text-white
+                                        {{ $client->homeLoan ? 'bg-green-500' : 'bg-red-500' }}">
+                                        {{ $client->homeLoan ? 'Yes' : 'No' }}
+                                    </span>
+                                </td>
+                                <td class="px-4 py-2 border-b">
+                                    <span class="px-2 py-1 rounded-full text-xs font-semibold text-white
+                                        {{ $client->cashLoan ? 'bg-green-500' : 'bg-red-500' }}">
+                                        {{ $client->cashLoan ? 'Yes' : 'No' }}
+                                    </span>
+                                </td>
                                 <td class="px-4 py-2 border-b" style="display: flex; justify-content: space-around">
                                     <a href="{{ route('clients.edit', $client->id) }}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
                                         {{ __("Edit") }}
