@@ -47,7 +47,7 @@ class HomeLoanController extends Controller
             )
         );
 
-        return redirect()->route('home-loan.edit', ['client' => $client->refresh()])
+        return redirect()->route('home_loan.edit', ['client' => $client->refresh()])
                          ->with('success', 'Client home loan updated successfully!');
     }
 

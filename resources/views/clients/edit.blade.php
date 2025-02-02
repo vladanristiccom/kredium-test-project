@@ -9,11 +9,24 @@
                             <h2 class="text-2xl font-semibold">{{ __("Edit Client") }}</h2>
                         </div>
                         <div>
-                            <a href="{{ route('home-loan.edit', $client->id) }}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 mr-2">
+
+                            <a href="{{ route('home_loan.edit', $client->id) }}"
+                               class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 mr-2"
+                               @if (!is_null($client->homeLoan) && $client->homeLoan?->advisor_id !== auth()->id())
+                                   style="pointer-events: none; opacity: 0.5;"
+                                   title="You don't have permission to edit this loan"
+                               @endif
+                            >
                                 Manage Home Loan
                             </a>
 
-                            <a href="{{ route('cash_loan.edit', $client->id) }}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                            <a href="{{ route('cash_loan.edit', $client->id) }}"
+                               class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                               @if (!is_null($client->cashLoan) && $client->cashLoan?->advisor_id !== auth()->id())
+                                   style="pointer-events: none; opacity: 0.5;"
+                                   title="You don't have permission to edit this loan"
+                               @endif
+                            >
                                 Manage Cash Loan
                             </a>
                         </div>

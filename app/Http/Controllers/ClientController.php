@@ -44,7 +44,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        return view('clients.edit',['client' => $client]);
+        return view('clients.edit',['client' => $client->load(['homeLoan', 'cashLoan'])]);
     }
 
     /**

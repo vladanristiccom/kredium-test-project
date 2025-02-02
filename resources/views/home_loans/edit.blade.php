@@ -21,7 +21,7 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('home-loan.update', $client->id ) }}" method="POST">
+                    <form action="{{ route('home_loan.update', $client->id ) }}" method="POST">
                         @csrf
                         @method('PUT')
 
